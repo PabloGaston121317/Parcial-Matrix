@@ -1,0 +1,169 @@
+import laMatriz.*
+
+//TIP: Con "CTRL + }" puede COMENTAR ("//") o DESCOMENTAR una o multiples lineas! Si no funciona probar con "CTRL + k" o "CTRL + /"
+
+describe "La Matriz"{
+
+	//Punto 1
+	const tanque = new Nativo (peso = 100)
+	//Tanque es un tripulantes nativo de peso 100.
+	const morfero = new Liberado (peso = 90, desarraigo = 0.5)
+	//Morfero es un tripulante liberado de peso 90 y desarraigo 0.5.
+	const trinica = new Cambiante (peso = 55, desarraigo = 0.6)
+	 //Trinica es una cambiante de peso 55 y desarraigo 0.6.
+	const nuveo = new Elegido (peso = 80)
+	//un Elegído llamado Nuveo, con peso 80.
+		
+	//Punto 2
+	 const dosis = new Nativo (peso = 82)
+	    //un nativo de peso 82
+	 const nabu = new Nave (proteina = 10000, tripulantes = #{morfero, trinica, tanque})
+	 //un Hovercraft con morfero, trinica y tanque de tripulantes. Las proteinas son 10000. 
+	 const logo = new Nave (proteina = 0, tripulantes = #{nuveo, dosis})
+	 //un Hovercraft con nuveo y dosis de tripulnates. Las proteinas son 0.
+
+	//punto 3
+	//const zino =//una Ciudad que tiene como flota a nabu y logo
+	
+	
+	test "1. Alimentacion" {
+		//verificar que 2500 son las calorías diaras de tanque //100 * 25 = 2500
+		assert.equals(2500, tanque.caloriasDiarias())
+		//verificar que 1500 son las calorías diaras de morfero // 3000 * 0.5 = 1500
+		assert.equals(1500, morfero.caloriasDiarias())
+		//verificar que 1700 son las calorías diaras de trinica  // 2000 * 0.6 + 500 =1700
+		assert.equals(1700, trinica.caloriasDiarias())
+		//verificar que 50 son las calorías diaras de nuveo  // 80 >= 70 -> 50
+		assert.equals(50, nuveo.caloriasDiarias())
+		
+		//dar de comer a tanque
+		tanque.comer()
+		//verificar que el peso de tanque es 100.25 //100 + 2500 / 100000 = 100.25 
+		assert.equals(100.25, tanque.peso())
+		//dar de comer a  morfero
+		morfero.comer()
+		//verificar que el peso de morfero es 90.15 //90 + 1500 / 100000 = 90.15  
+		assert.equals(90.15, morfero.peso())
+		//verificar que el desarraigo de morfero es 0.49 // 0.5 - 0.01  
+		assert.equals(0.49, morfero.desarraigo())
+		//dar de comer a  trinica
+		trinica.comer()		
+		//verificar que el peso de trinica es 55.17 //55 + 1700 / 10000 = 55.17 
+		assert.equals(55.17, trinica.peso())
+		//verificar que eldesarraigo de trinica es 0.59 // 0.6 - 0.01
+		assert.equals(0.59, trinica.desarraigo())
+		//dar de comer a nuveo 
+		nuveo.comer()
+		//verificar que el peso de nuveo es 80.001 //80 + 50 / 50000 = 80.001 
+		assert.equals(80.001, nuveo.peso())
+
+	 } 
+	 
+	
+	test "2.1 Alimentacion de Hovercraft" {
+
+		//alimentar a la tripulación de nabu
+		nabu.cenar()
+		//alimentar a la tripulación de nabu de nuevo, pero esto no se debería poder!
+		assert.throwsException({ nabu.cenar() })
+		//verificar que la reserva de proteinas de nabu es 4300
+		
+		//verificar que el peso de tanque es 100.25  
+		
+		//verificar que el peso de morfero es 90.15 
+		
+		//verificar que el desarraigo de morfero es 0.49  
+		
+		//verificar que el peso de trinica es 55.17  
+		
+		//verificar que eldesarraigo de trinica es 0.59 
+		
+		
+		
+	}
+    
+
+	/*
+	test "2.2 Conexion desde Hovercraft" {
+	
+	//const dosis = new Nativo(peso = 82)
+	//const logo = new HoverCraft(tripulacion=#{nuveo,dosis}, reservas=0)
+	//const nobu = new HoverCraft (tripulacion = #{tanque,morfero,trinica},reservas=10000)
+	
+		//conectar en logo a nuveo. 
+		
+		//verificar que nuveo esté conectado dede logo.
+		
+		//conectar de nuevo a nuveo desde logo, fallaría porque ya está conectado!
+
+		
+
+		//conectar a tanque desde logo, fallaría porque no es miembro de la tripulacion!
+		//assert.throwsException({ logo.conectarA(tanque) })
+		//verificar que tanque no está conectado desde logo.
+		
+		//conectar a dosis desde logo, fallaría porque no queda nadie para manejar la nave!
+		
+		//desconectar a dosis desde logo, fallaría porque no estaba conectado!
+		
+
+		//conectar a trinica desde nabu, fallaría porque no está suficientemente desarraigada.
+		
+		//hacer que trinica tenga 0.3 de desarraigo.
+		
+		//conectar a trinica desde nabu.
+		
+		//verificar que trinica está conectada desde nabu.
+		
+
+		//conectar a morfero desde nabu.
+		
+		//verificar que morfero está conectado desde nabu.
+		
+		//desconectar a morfero desde nabu.
+		
+		//verificar que morfero no está conectado desde nabu.
+		
+
+		//conectar a tanque desde nabu.
+		
+		//verificar que tanque está conectado desde nabu.
+		
+
+		//verificar que nuveo es el unico de los conectados desde logo.
+		
+		//verificar que trinica y tanque son los conectados desde nabu.
+		
+
+	}
+*/
+/*
+
+	test "3. Ciudades" {
+		//const dosis = new Nativo(peso = 82)
+
+	//const logo = new HoverCraft(tripulacion=#{nuveo,dosis}, reservas=0)
+	//const nobu = new HoverCraft (tripulacion = #{tanque,morfero,trinica},reservas=10000)
+	
+	//const zino = new Zino(flota = #{logo,nobu})
+		// conectar a nuveo desde logo.
+		
+		// conectar a tanque desde nabu.
+		
+		// conectar a morfero desde nabu.
+		
+		
+		// verificar que los más pesados de zino son tanque y dosis.
+		
+		// verificar que las calorias diarias de todos los tripulantes de zino es 7800.
+		
+		// verificar que el Hovercraft con más conectados de zino es nabu.
+		
+		// verificar que al buscar una nave con 3 o más tripulantes en zino se encuentra a nabu.
+		
+		// verificar que no se puede encontrar una nave con 4 o más tripulantes en zino.
+		
+	} 
+
+		
+}
